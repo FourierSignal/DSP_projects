@@ -1,0 +1,15 @@
+Better to use development version octave-default
+brew tap octave-app/octave-app
+brew install octave-
+
+brew reinstall octave-defaul. (  to pick up changes and update to the newest "default" development sources
+
+octave-default  --gui. ( to invoke from command line )
+
+block-comments: are effective only with newline after %{ and %}
+use  %{ newline  , %} new line
+or 
+refer in GUI: edit---> format -> commets
+
+
+
