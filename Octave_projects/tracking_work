@@ -1,0 +1,22 @@
+what to do next:
+------------------
+Find out why sound reproduction is failed when reconstructed from audio vector in the case : recording using single channel ??
+what is channel in recording ??
+
+
+Analyze --> 
+recording process : record object
+audio vector generated 
+various formats of audio-vector data . are they corresponds to sigle,double precision floating point and fixed point??
+Playing process : play object
+
+Try to understand  vector space analysis of audio-vector.  using octave and  linear algebra.
+
+understand various filtering methods - and implement them on hardware.
+
+
+
+
+
+
+
