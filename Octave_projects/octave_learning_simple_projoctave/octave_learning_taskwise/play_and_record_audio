@@ -1,0 +1,116 @@
+
+
+clear;
+clc();
+
+%[status,cmdout] = system("rm /Users/durgasunil/rec_Audiofile.mat");
+%clear status cmdout;
+
+%-------------------------------------------------
+%  extract audio-data from wav file and save to  matfile
+%  load audio-data from matfile into workspace and play 
+%{
+  info = audioinfo("test_audacity.wav")  
+  %[OriginalAudio, Fs] = wavread("test_audacity.wav"); %wavread will be obsolete
+  [OriginalAudio, Fs] = audioread("test_audacity.wav");
+  whos
+  player = audioplayer(OriginalAudio,Fs);
+  play(player);
+  save rec_Audiofile.mat  OriginalAudio  Fs; %/Users/durgasunil/rec_Audiofile.mat
+  pause(5); %play needs this before clearing vars
+  clear OriginalAudio Fs info player;
+  
+  
+  
+  load rec_Audiofile.mat;
+  whos
+  player_obj = audioplayer(OriginalAudio, Fs);
+  disp('playing the file');
+  play(player_obj);
+  %play_obj = play(player_obj);
+  %stop(play_obj);
+  pause(5);
+  clear OriginalAudio Fs player_obj;
+  
+%}
+%-------------------------------------------------
+
+
+
+
+
+
+
+
+
+%{
+OriginalAudio = record(1,4000);
+sound(OriginalAudio,4000);
+%}
+
+
+
+% Record - and - Play : using recorder object  (%Fs = 44100;)
+% ------------------------------------------------------
+%{
+Fs=44100;
+recorder_obj = audiorecorder(Fs,16);      %y = audiorecorder(Fs,nbits,channels)
+disp('start speaking');
+recordblocking(recorder_obj,1);           %record(),stop()
+disp('End of recording');
+disp('playing now');
+pause(2);
+player_obj = play(recorder_obj);
+pause(5);
+
+OriginalAudio = getaudiodata(recorder_obj); %y = getaudiodata(recorder,dataType)
+save rec_Audiofile.mat  OriginalAudio  Fs; 
+whos;
+clear OriginalAudio Fs ;
+clear recorder_obj player_obj;
+%
+% ------------------------------------------------------
+
+
+
+
+
+
+%load file and play -- convert Signal matrix into sound
+%------------------------------------------------------
+%
+
+
+load rec_Audiofile.mat;
+whos
+
+% Using sound() - less control
+disp('playing the file: sound fn');
+sound(OriginalAudio,Fs,16); %convert matrix of signal to Sound.
+pause(5);
+%
+
+
+
+%using audioplayer()- more control
+player_obj = audioplayer(OriginalAudio,Fs,16); %player = audioplayer(Y,Fs,nBits,ID) or player = audioplayer(recorder,ID)
+disp('playing the file: audioplayer fn');   
+play(player_obj); %play_obj = play(player_obj);%stop(play_obj);
+pause(5);
+clear OriginalAudio Fs player_obj;
+%
+
+%}
+%------------------------------------------------------
+
+
+
+%{
+OriginalAudioDFT = fft(OriginalAudio);
+OriginalAudioDFT_magnitude = abs(OriginalAudioDFT);
+plot(OriginalAudioDFT_magnitude);
+%}
+
+
+
+ 
