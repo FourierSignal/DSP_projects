@@ -1,4 +1,5 @@
-MATLAB hypertext Reference:   https://web.cecs.pdx.edu/~gerry/MATLAB/variables/vectors.html 
+MATLAB hypertext Reference:   http://web.cecs.pdx.edu/~gerry/MATLAB/masterOutline.html
+https://web.cecs.pdx.edu/~gerry/MATLAB/variables/vectors.html 
 
 Scalars:
 
@@ -82,7 +83,9 @@ This augmentation should be avoided for vectors involved in computations where s
 
 Colon notation
 --------------------------
-MATLAB colon notation is a compact way to refer to ranges of matrix elements. It is often used in copy operations and in the creation of vectors and matrices.
+MATLAB colon notation is a compact way to refer to ranges of matrix elements.
+It is often used in copy operations and in the creation of vectors and matrices.
+
 Colon notation can be used to create a vector as follows
 
 	>> x = xbegin:dx:xend
@@ -106,17 +109,22 @@ To create a column vector, append the transpose operator to the end of the vecto
 	     3
 	     4
 	     5
-Note that the colon expression needs to be enclosed in parentheses. Otherwise the transpose operator is applied to the value, 5, before the vector is created. (see Vector Transpose, below)
-Using colon notation to create a vector requires you to specify the increment, whereas using the linspace command requires you to specify the total number of elements. The following commands show how to create the same vector with both approaches.
+Using colon notation to create a vector requires you to specify the increment, 
+whereas using the linspace command requires you to specify the total number of elements.
+The following commands show how to create the same vector with both approaches.
 
 	>> xbegin=1; xend=10;  nx=5;  dx=(xend-xbegin)/(nx-1);
 	>> x1 = linspace(xbegin,xend,nx);
 	>> x2 = xbegin:dx:xend;
-The vectors are the same only if the increment dx corresponds to an integer number of elements. Prove this by repeating the preceding statments with nx=6;
-When a colon expression appears in place of a vector (or matrix) index, the expression is a kind of implied do loop. The expression
+The vectors are the same only if the increment dx corresponds to an integer number of elements. 
+Prove this by repeating the preceding statments with nx=6;
 
+When a colon expression appears in place of a vector (or matrix) index, the expression is a kind of implied do loop.
+The expression
 	istart:istop
-refers to the range of numbers between istart and istop, inclusive. For example, the following statements create a row vector, x, and then copies the third through seventh elements of x into y.
+refers to the range of numbers between istart and istop, inclusive. 
+
+For example, the following statements create a row vector, x, and then copies the third through seventh elements of x into y.
 	>> x = linspace(31,40,10);
 	>> y = x(3:7)
 
@@ -130,7 +138,56 @@ refers to the range of numbers between istart and istop, inclusive. For example,
 	
 	    35
 
-The expression, y = x(3:7), copies the third through seventh elements of x into the first through fourth elements of y. If y did not already exist it is created by the assignment.
 
 
+
+Vector operations:
+-------------------------
+Mathematical operations involving vectors follow the rules of linear algebra. 
+Addition and subtraction
+Operations with scalars
+Vector transpose
+Vector Multiplication
+Element-wise vector operations
+Passing vectors to built-in functions
+
+
+Matrices:
+-----------------
+Matrices are the fundamental data type in MATLAB.
+
+Creating
+Assigning values
+Addressing individual elements
+Colon notation
+Matrix operations
+
+Creating matrices
+---------------------
+	>> A = [1 2; 3 4]
+creates the 2 by 2 matrix A
+	A =
+	    1  2
+	    3  4
+
+Addressing matrix elements
+-----------------------------
+The following statements create a 3 by 3 matrix, print the (2,3) element and change the (3,2) element.
+
+	>> A = [1 2 3; 4 5 6; 7 8 9]
+	A =
+	    1   2   3
+	    4   5   6
+	    7   8   9
+
+	>> A(2,3)             %  ask MATLAB to print the (2,3) element
+	ans =
+	    6
+
+	>> A(3,2) = -5         %  reassign the (2,3) element
+	A =
+	    1   2   3
+	    4   5   6
+	    7  -5   9
+	
 
