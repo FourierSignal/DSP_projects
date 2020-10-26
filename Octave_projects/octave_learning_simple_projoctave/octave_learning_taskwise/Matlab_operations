@@ -1,0 +1,136 @@
+MATLAB hypertext Reference:   https://web.cecs.pdx.edu/~gerry/MATLAB/variables/vectors.html 
+
+Scalars:
+
+To create a scalar you simply introduce it on the left hand side of an equal sign.
+	>> x = 1;
+	>> y = 2;
+  
+Scalar operations
+	>> u = 5;
+	>> v = 3;
+	>> w = u + v
+	>> x = u - v
+	>> y = u * v
+	>> z = u/v
+  
+
+Vectors:
+In MATLAB a vector is a matrix with either one row or one column. 
+The distinction between row vectors and column vectors is essential for avoiding errors.
+
+There are numerous ways to actually create a vector, each one having advantages in particular situations.
+using the the built-in functions ones, zeros, linspace, and logspace
+assigning a mathematical expressions involving vectors
+appending elements to a scalar
+using colon notation
+
+Creating vectors with ones, zeros, linspace, and logspace
+----------------------------------------------------------
+The ones and zeros functions have two arguments.
+The first is the number of rows in the matrix you wish to create.
+The second is the number of columns. 
+
+To create a row or a column vector set the appropriate argument of ones and zeros to one.
+To create a row vector of length 5, filled with ones use
+
+	>> x = ones(1,5)
+To create a column vector of length 5, filled with zeros use
+	>> y = zeros(5,1)
+
+The linspace and logspace functions create vectors with linearly spaced or logarithmically spaced elements.
+y = linspace(x1,x2,n) generates n points. The spacing between the points is (x2-x1)/(n-1).
+
+	>> x = linspace(1,5,5)
+
+	x =
+	
+	     1     2     3     4     5
+
+	>> y = logspace(1,4,4)
+	
+	y =
+	
+	          10         100        1000       10000
+            
+            
+ Assigning vector expressions to a vector
+ -----------------------------------------------
+Once a vector has been created, it may be assigned to another vector. 
+	>> x = zeros(1,5);
+	>> y = x;
+  
+
+
+Increasing the size of a vector:
+-------------------------------
+MATLAB allocates memory for all variables on the fly. This allows you to increase the size of a vector simply by assigning a value to an element that has not been previously used.
+	>> x = linspace(21,25,5)
+	
+	x =
+	
+	    21    22    23    24    25
+	
+	>> x(7) = -9
+	
+	x =
+	
+	    21    22    23    24    25     0    -9
+	
+This augmentation should be avoided for vectors involved in computations where speed is critical.
+
+
+Colon notation
+--------------------------
+MATLAB colon notation is a compact way to refer to ranges of matrix elements. It is often used in copy operations and in the creation of vectors and matrices.
+Colon notation can be used to create a vector as follows
+
+	>> x = xbegin:dx:xend
+or
+	>> x2 = xbegin:xend
+where xbegin and xend are the range of values covered by elements of the x vector, and dx is the (optional) increment. If dx is omitted a value of 1 (unit increment) is used. The numbers xbegin, dx, and xend need not be integers.
+The preceding statements create row vectors. For example
+
+	>> x = 1:5
+
+	x =
+	
+	1     2     3     4     5
+To create a column vector, append the transpose operator to the end of the vector-creating expression
+	>> y = (1:5)'
+
+	y =
+	
+	     1
+	     2
+	     3
+	     4
+	     5
+Note that the colon expression needs to be enclosed in parentheses. Otherwise the transpose operator is applied to the value, 5, before the vector is created. (see Vector Transpose, below)
+Using colon notation to create a vector requires you to specify the increment, whereas using the linspace command requires you to specify the total number of elements. The following commands show how to create the same vector with both approaches.
+
+	>> xbegin=1; xend=10;  nx=5;  dx=(xend-xbegin)/(nx-1);
+	>> x1 = linspace(xbegin,xend,nx);
+	>> x2 = xbegin:dx:xend;
+The vectors are the same only if the increment dx corresponds to an integer number of elements. Prove this by repeating the preceding statments with nx=6;
+When a colon expression appears in place of a vector (or matrix) index, the expression is a kind of implied do loop. The expression
+
+	istart:istop
+refers to the range of numbers between istart and istop, inclusive. For example, the following statements create a row vector, x, and then copies the third through seventh elements of x into y.
+	>> x = linspace(31,40,10);
+	>> y = x(3:7)
+
+	y =
+	
+	    33    34    35    36    37
+	
+	>> y(3)
+	
+	ans =
+	
+	    35
+
+The expression, y = x(3:7), copies the third through seventh elements of x into the first through fourth elements of y. If y did not already exist it is created by the assignment.
+
+
+
