@@ -1,6 +1,156 @@
 Before going through below text go through following mathworks refernce
 https://in.mathworks.com/help/matlab/operators-and-elementary-operations.html?s_tid=CRUX_lftnav
 
+Array vs. Matrix Operations
+-----------------------------
+
+Matrix operations follow the rules of linear algebra.
+By contrast, array operations execute element by element operations and support multidimensional arrays.
+
+Array operations:
+-------------------
+Array operations execute element by element operations on corresponding elements of vectors, matrices, and multidimensional arrays
+https://in.mathworks.com/help/matlab/matlab_prog/compatible-array-sizes-for-basic-operations.html
+
+1)you can add two vectors with the same size.
+
+A = [1 1 1]
+A =
+
+     1     1     1
+B = [1 2 3]
+B =
+
+     1     2     3
+A+B
+ans =
+
+     2     3     4
+
+
+
+2)
+If one operand is a scalar and the other is not, then MATLAB implicitly expands the scalar to be the same size as the other operand.
+For example, you can compute the element-wise product of a scalar and a matrix.
+
+A = [1 2 3; 1 2 3]
+A =
+
+     1     2     3
+     1     2     3
+3.*A
+ans =
+
+     3     6     9
+     3     6     9
+
+
+3)
+if you subtract a 1-by-3 vector from a 3-by-3 matrix because the two sizes are compatible.
+When you perform the subtraction, the vector is implicitly expanded to become a 3-by-3 matrix.
+
+A = [1 1 1; 2 2 2; 3 3 3]
+A =
+
+     1     1     1
+     2     2     2
+     3     3     3
+m = [2 4 6]
+m =
+
+     2     4     6
+A - m
+ans =
+
+    -1    -3    -5
+     0    -2    -4
+     1    -1    -3
+
+
+4)
+
+A row vector and a column vector have compatible sizes.
+
+If you add a 1-by-3 vector to a 2-by-1 vector, 
+ then each vector implicitly expands into a 2-by-3 matrix before MATLAB executes the element-wise addition.
+
+x = [1 2 3]
+x =
+
+     1     2     3
+     
+y = [10; 15]
+y =
+
+    10
+    15
+    
+    
+x + y
+ans =
+
+    11    12    13
+    16    17    18
+
+5)
+If the sizes of the two operands are incompatible, then you get an error.
+
+A = [8 1 6; 3 5 7; 4 9 2]
+A =
+
+     8     1     6
+     3     5     7
+     4     9     2
+     
+m = [2 4]
+m =
+
+     2     4
+     
+A - m
+Matrix dimensions must agree.
+
+#########################################################################################
+
+Matrix Operations:
+Matrix operations follow the rules of linear algebra and are not compatible with multidimensional arrays.
+The required size and shape of the inputs in relation to one another depends on the operation. 
+For nonscalar inputs, the matrix operators generally calculate different answers than their array operator counterparts.
+
+The required size and shape of the inputs in relation to one another depends on the operation. 
+For example, if you use the matrix right division operator, /, to divide two matrices, the matrices must have the same number of columns.
+But if you use the matrix multiplication operator, *, to multiply two matrices, then the matrices must have a common inner dimension.
+
+
+To see this, you can calculate the product of two matrices.
+
+A = [1 3;2 4]
+A =
+
+     1     3
+     2     4
+B = [3 0;1 5]
+B =
+
+     3     0
+     1     5
+A*B
+ans =
+
+     6    15
+    10    20
+    
+The previous matrix product is not equal to the following element-wise product.
+
+A.*B
+ans =
+
+     3     0
+     2    20
+
+
+#################################################################################################################
+
 
 MATLAB hypertext Reference:   http://web.cecs.pdx.edu/~gerry/MATLAB/masterOutline.html
 https://web.cecs.pdx.edu/~gerry/MATLAB/variables/vectors.html 
